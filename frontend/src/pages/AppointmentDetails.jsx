@@ -40,6 +40,16 @@ const AppointmentDetails = () => {
         }
     };
 
+    const convertCmToFeetInches = (cm) => {
+        if (!cm) return '';
+
+        const inches = cm / 2.54;
+        const feet = Math.floor(inches / 12);
+        const remainingInches = Math.round(inches % 12);
+
+        return `${feet} ft ${remainingInches} in`;
+    };
+
     useEffect(() => {
         fetchAppointmentDetails();
     }, [id]);
@@ -53,7 +63,7 @@ const AppointmentDetails = () => {
                     <p><strong>Date:</strong> {appointment.appointmentDate}</p>
                     <p><strong>Reason:</strong> {appointment.reason}</p>
                     <p><strong>Weight:</strong> {appointment.vitals.weight}</p>
-                    <p><strong>Height:</strong> {appointment.vitals.height}</p>
+                    <p><strong>Height:</strong> {appointment.vitals.height} cm ({convertCmToFeetInches(appointment.vitals.height)})</p>
                     <p><strong>Blood Pressure:</strong> {appointment.vitals.bp.systolic}/{appointment.vitals.bp.diastolic}</p>
                     <p><strong>Sugar:</strong> {appointment.vitals.sugar}</p>
                     <p><strong>Pulse:</strong> {appointment.vitals.pulse}</p>
@@ -63,7 +73,7 @@ const AppointmentDetails = () => {
                     <IdealWeight height={appointment.vitals.height} bmi={appointment.vitals.bmi} />
                     <div>
                         <strong>Prescribed Medicines:</strong>
-                        <ul className="details-medicine-list"> 
+                        <ul className="details-medicine-list">
                             {appointment.medicinesPrescribed.map((medicine, index) => (
                                 <li key={index}>{medicine.name} - {medicine.dosage} - {medicine.frequency}</li>
                             ))}
@@ -84,7 +94,7 @@ const AppointmentDetails = () => {
                             Save Note
                         </button>
                     </div>
-                    
+
                 </div>
             )}
             <button className="update-btn" onClick={() => setShowUpdateModal(true)}>

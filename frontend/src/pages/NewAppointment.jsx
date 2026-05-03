@@ -175,7 +175,9 @@ const NewAppointment = () => {
     const fetchLastHeight = async () => {
       try {
         // ✅ If patient is child → DON'T even fetch
-        if (patient && patient.age < 20) {
+        if (patient && patient.age < 20
+          
+        ) {
           setIsHeightEditable(true);
 
           // ❗ IMPORTANT: clear old height
