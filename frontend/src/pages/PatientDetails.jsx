@@ -57,7 +57,7 @@ const PatientDetails = () => {
                     <p><strong>Phone:</strong> {patient.phone}</p>
                     <p><strong>Email:</strong> {patient.email}</p>
                     <p><strong>Blood Group:</strong> {patient.bloodGroup}</p>
-                    <p className="full-width"><strong>Address:</strong> {patient.address}</p>
+                    <p className="full-width"><strong>Address:</strong> {patient.address?.address || "Not provided"}</p>
                     <p className="full-width"><strong>Medical History:</strong> {patient.medicalHistory}</p>
                 </div>
             </div>

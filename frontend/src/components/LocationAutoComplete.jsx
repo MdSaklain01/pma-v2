@@ -3,7 +3,7 @@ import { useRef } from "react";
 
 const libraries = ["places"];
 
-function LocationInput({ setLocation }) {
+function LocationInput({ value, onChange }) {
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
     libraries,
@@ -14,12 +14,16 @@ function LocationInput({ setLocation }) {
   const onPlaceChanged = () => {
     const place = autocompleteRef.current.getPlace();
 
-    setLocation({
+    if (!place.geometry) return;
+
+    const locationData = {
       address: place.formatted_address,
       lat: place.geometry.location.lat(),
       lng: place.geometry.location.lng(),
       placeId: place.place_id,
-    });
+    };
+
+    onChange(locationData);
   };
 
   if (!isLoaded) return <div>Loading...</div>;
@@ -29,7 +33,11 @@ function LocationInput({ setLocation }) {
       onLoad={(ref) => (autocompleteRef.current = ref)}
       onPlaceChanged={onPlaceChanged}
     >
-      <input type="text" placeholder="Enter location" />
+      <input
+        type="text"
+        placeholder="Enter location"
+        defaultValue={value?.address || ""}
+      />
     </Autocomplete>
   );
 }

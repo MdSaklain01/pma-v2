@@ -14,7 +14,12 @@ const NewPatient = () => {
         gender: "",
         phone: "",
         email: "",
-        address: "",
+        address: {
+            address: "",
+            lat: "",
+            lng: "",
+            placeId: ""
+        },
         bloodGroup: "",
         medicalHistory: "",
     });

@@ -35,16 +35,16 @@ const patientSchema = new mongoose.Schema(
       type: String,
     },
 
-    address: {
-      type: String,
-    },
-
     // address: {
-    //   address: String,
-    //   lat: Number,
-    //   lng: Number,
-    //   placeId: String
+    //   type: String,
     // },
+
+    address: {
+      address: String,
+      lat: Number,
+      lng: Number,
+      placeId: String
+    },
 
     bloodGroup: {
       type: String,

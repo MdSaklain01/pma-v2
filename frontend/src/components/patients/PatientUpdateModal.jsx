@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import api from "../../api/axios";
 import "../../style/updateModal.css";
+import LocationInput from "../LocationAutoComplete";
 
 const UpdatePatientModal = ({ isOpen, onClose, patient, onUpdateSuccess }) => {
 
@@ -11,7 +12,12 @@ const UpdatePatientModal = ({ isOpen, onClose, patient, onUpdateSuccess }) => {
         gender: "",
         phone: "",
         email: "",
-        address: "",
+        address: {
+            address: "",
+            lat: "",
+            lng: "",
+            placeId: ""
+        },
         bloodGroup: "",
         medicalHistory: "",
     });
@@ -115,13 +121,12 @@ const UpdatePatientModal = ({ isOpen, onClose, patient, onUpdateSuccess }) => {
                             <option value="O-">O-</option>
                         </select>
 
-                        <input
-                            className="full-width"
-                            name="address"
-                            placeholder="Address"
-                            value={formData.address}
-                            onChange={handleChange}
-                        />
+                        <LocationInput
+                        value={formData.address}
+                        onChange={(location) =>
+                            setFormData({ ...formData, address: location })
+                        }
+                    />
 
                         <textarea
                             className="full-width"
