@@ -33,9 +33,9 @@ router.get("/today", async (req, res) => {
             appointmentDate: { $gte: start, $lte: end }
         })
             .populate("patientId", "fullName age gender") // important
-            .sort({ time: 1 });
+            .sort({ appointmentDate: 1 });
 
-        res.json(appointments);
+        res.json(appointments); 
     } catch (err) {
         console.error("ERROR:", err);
         res.status(500).json({ message: err.message });

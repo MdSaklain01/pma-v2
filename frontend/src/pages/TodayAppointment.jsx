@@ -42,7 +42,8 @@ const TodayAppointments = () => {
 
             <p className="appointment-time">
               Time:{" "}
-              {new Date(appt.appointmentDate).toLocaleTimeString([], {
+              {new Date(appt.appointmentDate).toLocaleTimeString("en-IN", {
+                timeZone: "Asia/Kolkata",
                 hour: "2-digit",
                 minute: "2-digit",
               })}
