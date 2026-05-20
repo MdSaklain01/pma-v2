@@ -8,7 +8,8 @@ const PatientAppointments = () => {
     const { id } = useParams();
     const navigate = useNavigate();
     const [appointments, setAppointments] = useState([]);
-    useEffect(() => {        fetchAppointments();
+    useEffect(() => {
+        fetchAppointments();
     }, [id]);
 
     const fetchAppointments = async () => {
@@ -34,20 +35,21 @@ const PatientAppointments = () => {
                             <p><strong>Status:</strong> {appointment.status}</p>
                             <p><strong>Doctor:</strong> {appointment.doctorName}</p>
                             <p><strong>Blood Pressure:</strong> {appointment.vitals.bp.systolic}/{appointment.vitals.bp.diastolic}</p>
-                    <p><strong>Sugar:</strong> {appointment.vitals.sugar}</p>
-                    <p><strong>Pulse:</strong> {appointment.vitals.pulse}</p>
-                    <p><strong>Temperature:</strong> {appointment.vitals.temperature}</p>
-                    <p><strong>BMI:</strong> {appointment.vitals.bmi}</p>
-                    <div>
-                        <strong>Medicines Prescribed:</strong>
-                        <ul className="medicines-list"> 
-                            {appointment.medicinesPrescribed.map((medicine, index) => (
-                                <li key={index}>{medicine.name} - {medicine.dosage} - {medicine.frequency}</li>
-                            ))}
-                        </ul>
-                    </div>
-                    <p><strong>Notes:</strong> {appointment.notes}</p>
-                    </li>
+                            <p><strong>Sugar:</strong> {appointment.vitals.sugar}</p>
+                            <p><strong>Pulse:</strong> {appointment.vitals.pulse}</p>
+                            <p><strong>Temperature:</strong> {appointment.vitals.temperature}</p>
+                            <p><strong>Weight:</strong> {appointment.vitals.weight}</p>
+                            <p><strong>BMI:</strong> {appointment.vitals.bmi}</p>
+                            <div>
+                                <strong>Medicines Prescribed:</strong>
+                                <ul className="medicines-list">
+                                    {appointment.medicinesPrescribed.map((medicine, index) => (
+                                        <li key={index}>{medicine.name} - {medicine.dosage} - {medicine.frequency}</li>
+                                    ))}
+                                </ul>
+                            </div>
+                            <p><strong>Notes:</strong> {appointment.notes}</p>
+                        </li>
                     ))}
                 </ul>
             )}
