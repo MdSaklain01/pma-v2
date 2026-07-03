@@ -39,6 +39,7 @@ const TodayAppointments = () => {
             <p className="patient-name">
               {appt.patientId?.fullName || "Unknown Patient"}
             </p>
+            <p>Token Number: {appt.tokenNumber}</p>
 
             <p className="appointment-time">
               Time:{" "}

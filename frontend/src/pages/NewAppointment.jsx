@@ -29,6 +29,7 @@ const NewAppointment = () => {
   const [formData, setFormData] = useState({
     patientId: patientId,       //auto-attached
     appointmentDate: "",
+    tokenNumber: "",
     reason: "",
     doctorName: "",
     status: "Scheduled",
@@ -387,6 +388,13 @@ const NewAppointment = () => {
               placeholder="BMI"
               value={formData.vitals.bmi || ""}
               readOnly
+            />
+            <input
+              type="number"
+              name="tokenNumber"
+              placeholder="Token Number"
+              value={formData.tokenNumber}
+              onChange={handleChange}
             />
           </div>
         </div>

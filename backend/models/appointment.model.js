@@ -8,6 +8,10 @@ const appointmentSchema = new mongoose.Schema(
             required: true,
         },
 
+        tokenNumber: {
+            type: Number,
+        },
+
         appointmentDate: {
             type: Date,
             required: true,

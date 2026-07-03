@@ -62,6 +62,14 @@ const UpdatePatientModal = ({ isOpen, onClose, patient, onUpdateSuccess }) => {
                     <div className="form-grid">
 
                         <input
+                            name="patientId"
+                            placeholder="Patient ID"
+                            value={formData.patientId}
+                            onChange={handleChange}
+                            required
+                        />
+
+                        <input
                             name="fullName"
                             placeholder="Full Name"
                             value={formData.fullName}
