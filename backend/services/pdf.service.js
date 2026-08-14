@@ -1,6 +1,7 @@
 const puppeteer = require("puppeteer");
 
 const generatePDF = async (html) => {
+    const { default : puppeteer } = await import("puppeteer");
     const browser = await puppeteer.launch({
         headless: true,
         args: ["--no-sandbox", "--disable-setuid-sandbox"],
