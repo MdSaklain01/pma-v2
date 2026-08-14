@@ -114,8 +114,40 @@ const UpdateAppointmentModal = ({ appointment, onClose }) => {
             + Add Medicine
           </button>
 
-          {/* Notes */}
-          <h4>Doctor Notes</h4>
+          <div>
+            <label htmlFor="investigations"><strong>Investigations:</strong></label>
+                <textarea
+                  id="investigations"
+                  name="investigations"
+                  value={formData.investigations}
+                  onChange={handleChange}
+                  className="doctor-notes-textarea"
+                />
+          </div>
+
+          <div>
+            <label htmlFor="advice"><strong>Advice:</strong></label>
+                <textarea
+                  id="advice"
+                  name="advice"
+                  value={formData.advice}
+                  onChange={handleChange}
+                  className="doctor-notes-textarea"
+                />
+          </div>
+
+          <div className="followup-date">
+            <label htmlFor="followUpDate"><strong>Follow-up Date:</strong></label>
+            <input
+              type="datetime-local"
+              name="followUpDate"
+              value={formData.followUpDate ? new Date(formData.followUpDate).toISOString().slice(0, 16) : ""}
+              onChange={handleChange}
+            />
+          </div>
+
+          {/* Pharmacy Notes */}
+          <h4>Pharmacy Notes</h4>
 
           <textarea
             name="pharmacyNotes"

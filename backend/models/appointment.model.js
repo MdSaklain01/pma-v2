@@ -96,6 +96,25 @@ const appointmentSchema = new mongoose.Schema(
         dispensedAt: {
             type: Date,
         },
+        
+        chiefComplaints: {
+            type: String,
+            default: ""
+        },
+
+        advice: {
+            type: String,
+            default: ""
+        },
+
+        investigations: {
+            type: String,
+            default: ""
+        },
+
+        followUpDate: {
+            type: Date
+        },
 
         notes: {
             type: String,

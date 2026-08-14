@@ -29,6 +29,9 @@ const AppointmentDetails = () => {
     const handleNotesChange = (e) => {
         setAppointment({ ...appointment, notes: e.target.value });
     };
+    const handleChiefComplaintsChange = (e) => {
+        setAppointment({ ...appointment, chiefComplaints: e.target.value });
+    }
 
     const handleNotesSave = async (e) => {
         e.preventDefault();
@@ -38,6 +41,48 @@ const AppointmentDetails = () => {
         } catch (error) {
             console.error("Error saving notes:", error);
             alert("Failed to save notes. Please try again.");
+        }
+    };
+    const handleChiefComplaintsSave = async (e) => {
+        e.preventDefault();
+        try {
+            await api.patch(`/appointments/${id}`, { chiefComplaints: appointment.chiefComplaints });
+            alert("Chief complaints saved successfully!");
+        } catch (error) {
+            console.error("Error saving chief complaints:", error);
+            alert("Failed to save chief complaints. Please try again.");
+        }
+    };
+
+    const handlePrescriptionDownload = async () => {
+        try {
+            const response = await api.get(
+                `/prescriptions/${id}/download`,
+                {
+                    responseType: "blob",
+                }
+            );
+            const blob = new Blob(
+                [response.data],
+                { type: "application/pdf" }
+            );
+            const url = window.URL.createObjectURL(blob);
+            const link = document.createElement("a");
+
+            link.href = url;
+            link.download = `prescription-${id}.pdf`;
+
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+            window.URL.revokeObjectURL(url);
+
+            alert("Prescription downloaded successfully");
+
+        } catch (error) {
+            console.error("Prescription download error:", error);
+
+            alert("Failed to download prescription, try again!");
         }
     };
 
@@ -58,6 +103,9 @@ const AppointmentDetails = () => {
     return (
         <div className="appointment-details-container">
             <h1 className="details-title">Appointment Details Page:</h1>
+            <button className="update-btn" onClick={handlePrescriptionDownload}>
+                Download Prescription
+            </button>
             {appointment && (
                 <div className="details-card">
                     <p><strong>Patient Name:</strong> {appointment.patientId?.fullName}</p>
@@ -95,7 +143,7 @@ const AppointmentDetails = () => {
                     </div>
                     <p><strong>Notes:</strong> {appointment.notes}</p>
 
-                    {/* //doctor's notes input field */}
+                    {/* doctor's notes input field */}
                     <div>
                         <label htmlFor="doctorNotes"><strong>Doctor's Notes:</strong></label>
                         <textarea
@@ -109,6 +157,18 @@ const AppointmentDetails = () => {
                         </button>
                     </div>
 
+                    <div>
+                        <label htmlFor="chiefComplaints"><strong>Chief Complaints:</strong></label>
+                        <textarea
+                            id="chiefComplaints"
+                            value={appointment.chiefComplaints || ''}
+                            onChange={handleChiefComplaintsChange}
+                            className="doctor-notes-textarea"
+                        />
+                        <button className="save-notes-btn" onClick={handleChiefComplaintsSave}>
+                            Save
+                        </button>
+                    </div>
                 </div>
             )}
             <button className="update-btn" onClick={() => setShowUpdateModal(true)}>
