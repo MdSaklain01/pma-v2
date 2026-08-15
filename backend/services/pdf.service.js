@@ -4,13 +4,14 @@ const generatePDF = async (html) => {
     const { default : puppeteer } = await import("puppeteer");
     const browser = await puppeteer.launch({
         headless: true,
-        args: [
-            "--no-sandbox",
-            "--disable-setuid-sandbox",
-            "--disable-dev-shm-usage",
-            // "--disable-accelerated-2d-canvas",
-            "--disable-gpu",
-        ],
+        args: ["--no-sandbox", "--disable-setuid-sandbox"],
+        // args: [
+        //     "--no-sandbox",
+        //     "--disable-setuid-sandbox",
+        //     "--disable-dev-shm-usage",
+        //     // "--disable-accelerated-2d-canvas",
+        //     "--disable-gpu",
+        // ],
     });
 
     try {
