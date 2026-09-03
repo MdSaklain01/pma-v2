@@ -171,6 +171,15 @@ router.patch('/:id', async (req, res) => {
     try {
         const { id } = req.params;
         const updateData = req.body;
+
+        //recording the prescription time if medicines are prescribed
+        if (
+            Array.isArray(updateData.medicinesPrescribed) &&
+            updateData.medicinesPrescribed.length > 0
+        ) {
+            updateData.medicinePrescribedAt = new Date();
+        }
+
         const updatedAppointment = await Appointment.findByIdAndUpdate(id, updateData, { new: true });
 
         if (!updatedAppointment) {

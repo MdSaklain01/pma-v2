@@ -93,6 +93,10 @@ const appointmentSchema = new mongoose.Schema(
             default: "Pending",
         },
 
+        medicinePrescribedAt: {
+            type: Date,
+        },
+
         dispensedAt: {
             type: Date,
         },

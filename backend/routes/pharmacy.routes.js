@@ -30,9 +30,13 @@ router.get("/medicine-queue", async (req, res) => {
         $lte: endOfDay,
       },
       medicinesPrescribed: { $exists: true, $ne: [] },
+      medicinePrescribedAt: {
+        $exists: true,
+        $ne: null
+      }
     })
     .populate("patientId")
-    .sort({ appointmentDate: 1 });
+    .sort({ medicinePrescribedAt: 1 });
 
     res.status(200).json(appointments);
   } catch (error) {
