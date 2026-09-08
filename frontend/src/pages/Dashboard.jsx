@@ -68,22 +68,20 @@ const Dashboard = () => {
 
     return (
         <div className="dashboard-container">
-            <h3>Welcome, Dr. E.S Khan</h3>
-            <h1>Dashboard</h1>
+            {/* <h1>Dashboard</h1> */}
             <div className="dashboard-actions">
 
                 <Link to='/pharmacy' >
                     <button className="pharmacy-btn" type="submit">Medicine Queue</button>
                 </Link>
 
-                <Link to='/appointments/today'>
+                {/* <Link to='/appointments/today'>
                     <button className="today-appointments-btn" type="submit">Today's Appointments</button>
                 </Link>
-
-                {/* new patient button: */}
                 <Link to='/newPatient' >
                     <button className="new-patient-btn" type="submit">New Patient</button>
-                </Link>
+                </Link> 
+                */}
 
 
                 {/* searching for patients:  */}

@@ -27,7 +27,7 @@ const Login = () => {
             await api.post('/users/login', formData);
             setIsAuthenticated(true);
             alert("Login successful! 🎉");
-            navigate("/dashboard");
+            navigate("/frontal");
         } catch (error) {
             alert("Login failed! ❌");
         }
