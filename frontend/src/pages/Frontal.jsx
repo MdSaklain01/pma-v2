@@ -44,11 +44,6 @@ const Frontal = () => {
 
     }, [navigate]);
 
-
-    // --------------------------------------------------
-    // FETCH DASHBOARD DATA
-    // --------------------------------------------------
-
     const fetchDashboardData = async () => {
 
         try {

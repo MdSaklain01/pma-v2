@@ -27,7 +27,11 @@ function App() {
           <main>
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/frontal" element={<Frontal />} />
+              <Route path="/frontal" element={
+                <ProtectedRoute>
+                  <Frontal />
+                </ProtectedRoute>} 
+              />
 
               <Route path='/dashboard' element={
                 <ProtectedRoute>
